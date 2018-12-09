@@ -31,13 +31,13 @@ var WYSIWYG = {
 	Settings: function() {
 	
 		// Images Directory
-		this.ImagesDir = "images/";
+		this.ImagesDir = "../images/";
 		
 		// Popups Directory
-		this.PopupsDir = "popups/";
+		this.PopupsDir = "../popups/";
 		
 		// CSS Directory File
-		this.CSSFile = "styles/wysiwyg.css";		
+		this.CSSFile = "../styles/wysiwyg.css";		
 		
 		// Default WYSIWYG width and height (use px or %)
 		this.Width = "500px";
