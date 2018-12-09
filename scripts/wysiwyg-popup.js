@@ -35,6 +35,10 @@ if(!window.opener) window.close();
 // bind objects on local vars
 window.opener.postMessage({ "CMD": "PopulatePopup" }, "*");
 
+var WYSIWYG = null;
+var WYSIWYG_Core = null;
+var WYSIWYG_Table = null;
+
 window.addEventListener("message", function(event)
 {
   if (event.data.length !== 2 || event.data[0]["CMD"] !== "PopulatePopup")
@@ -44,7 +48,3 @@ window.addEventListener("message", function(event)
   WYSIWYG_Core = event.data[1][1];
   WYSIWYG_Table = event.data[1][2];
 })
-
-var WYSIWYG = null;	
-var WYSIWYG_Core = null;
-var WYSIWYG_Table = null;
