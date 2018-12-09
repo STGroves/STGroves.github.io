@@ -1240,7 +1240,7 @@ var WYSIWYG = {
 	      //	return;
 	      //}
 	      //form.submit();
-        window.postMessage({ "cmd": "Save", "value": $(n).value }, "*");
+        window.parent.postMessage({ "cmd": "Save", "value": $(n).value }, "*");
 	      break;
 			         
 			// Return
