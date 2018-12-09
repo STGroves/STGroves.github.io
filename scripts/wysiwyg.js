@@ -352,7 +352,8 @@ var WYSIWYG = {
 	 */
 	attach: function(id, settings) {	
 		if(id != "all") {	
-			this.setSettings(id, settings);
+      this.setSettings(id, settings);
+		  console.log(this.config);
 			WYSIWYG_Core.includeCSS(this.config[id].CSSFile);
 			WYSIWYG_Core.addEvent(window, "load", function generateEditor() {WYSIWYG._generate(id, settings);});
 		}
