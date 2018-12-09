@@ -1116,14 +1116,15 @@ var WYSIWYG = {
 	    // ForeColor and 
 	    case "ForeColor":
 	      var rgb = this.getEditorWindow(n).document.queryCommandValue(cmd);
-	      var currentColor = rgb != '' ? toHexColor(this.getEditorWindow(n).document.queryCommandValue(cmd)) : "000000";
-	      window.open(
+        var currentColor = rgb != '' ? toHexColor(this.getEditorWindow(n).document.queryCommandValue(cmd)) : "000000";
+	      console.log("Fore!");
+	      var win = window.open(
 	        this.config[n].PopupsDir + 'select_color.html?color=' + currentColor + '&command=' + cmd + '&wysiwyg=' + n,
 	        'popup',
 	        'location=0,status=0,scrollbars=0,width=210,height=165,top=' +
 	        popupPosition.top +
 	        ',left=' +
-	        popupPosition.left).focus();
+          popupPosition.left).focus();
 	      break;
 
 	    // BackColor
