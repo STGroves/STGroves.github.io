@@ -33,6 +33,7 @@ var WYSIWYG_Popup = {
 if(!window.opener) window.close();
 
 // bind objects on local vars
+console.log(window.opener);
 var WYSIWYG = window.opener.WYSIWYG;	
 var WYSIWYG_Core = window.opener.WYSIWYG_Core;
 var WYSIWYG_Table = window.opener.WYSIWYG_Table;
