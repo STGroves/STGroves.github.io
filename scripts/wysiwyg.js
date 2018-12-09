@@ -1240,9 +1240,8 @@ var WYSIWYG = {
 	      //	return;
 	      //}
 	      //form.submit();
-	      window.postMessage({ "cmd": "Save", "value": $(n).value }, "*");
-	  }
-	  break;
+        window.postMessage({ "cmd": "Save", "value": $(n).value }, "*");
+	      break;
 			         
 			// Return
 			case "Return":
