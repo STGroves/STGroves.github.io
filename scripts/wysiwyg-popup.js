@@ -33,7 +33,18 @@ var WYSIWYG_Popup = {
 if(!window.opener) window.close();
 
 // bind objects on local vars
-console.log(window.opener);
-var WYSIWYG = window.opener.WYSIWYG;	
-var WYSIWYG_Core = window.opener.WYSIWYG_Core;
-var WYSIWYG_Table = window.opener.WYSIWYG_Table;
+window.opener.postMessage({ "CMD": "PopulatePopup" }, "*");
+
+window.addEventListener("message", function(event)
+{
+  if (event.data.length !== 2 || event.data[0]["CMD"] !== "PopulatePopup")
+    return;
+
+  WYSIWYG = event.data[1][0];
+  WYSIWYG_Core = event.data[1][1];
+  WYSIWYG_Table = event.data[1][2];
+})
+
+var WYSIWYG = null;	
+var WYSIWYG_Core = null;
+var WYSIWYG_Table = null;
