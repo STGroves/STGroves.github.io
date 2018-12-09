@@ -1105,96 +1105,144 @@ var WYSIWYG = {
 		}
 		
 		// switch which action have to do
-		switch(cmd) {
-			case "Maximize":
-				this.maximize(n);
-			break;
-			case "FormatBlock":
-				WYSIWYG_Core.execCommand(n, cmd, "<" + value + ">");
-			break;
-			// ForeColor and 
-			case "ForeColor":
-				var rgb = this.getEditorWindow(n).document.queryCommandValue(cmd);
-		      	var currentColor = rgb != '' ? toHexColor(this.getEditorWindow(n).document.queryCommandValue(cmd)) : "000000";
-			  	window.open(this.config[n].PopupsDir + 'select_color.html?color=' + currentColor + '&command=' + cmd + '&wysiwyg=' + n, 'popup', 'location=0,status=0,scrollbars=0,width=210,height=165,top=' + popupPosition.top + ',left=' + popupPosition.left).focus();
-			break;
-			
-			// BackColor
-			case "BackColor":
-				var currentColor = toHexColor(this.getEditorWindow(n).document.queryCommandValue(cmd));
-			  	window.open(this.config[n].PopupsDir + 'select_color.html?color=' + currentColor + '&command=' + cmd + '&wysiwyg=' + n, 'popup', 'location=0,status=0,scrollbars=0,width=210,height=165,top=' + popupPosition.top + ',left=' + popupPosition.left).focus();
-			break;
-			
-			// InsertImage
-			case "InsertImage": 
-				window.open(imagePopupFile + '?wysiwyg=' + n, 'popup', 'location=0,status=0,scrollbars=0,resizable=0,width=' + imagePopupWidth + ',height=' + imagePopupHeight + ',top=' + popupPosition.top + ',left=' + popupPosition.left).focus();
-			break;
-			
-			// Remove Image
-			case "RemoveImage": 
-				this.removeImage(n);
-			break;
-			
-			// Remove Link
-			case "RemoveLink": 
-				this.removeLink(n);
-			break;
-			
-			// Remove a Node
-			case "RemoveNode": 
-				this.removeNode(n);
-			break;
-			
-			// Create Link
-			case "CreateLink": 
-				window.open(this.config[n].PopupsDir + 'insert_hyperlink.html?wysiwyg=' + n, 'popup', 'location=0,status=0,scrollbars=0,resizable=0,width=350,height=160,top=' + popupPosition.top + ',left=' + popupPosition.left).focus();
-			break;
-			
-			// InsertTable
-			case "InsertTable": 
-				window.open(this.config[n].PopupsDir + 'create_table.html?wysiwyg=' + n, 'popup', 'location=0,status=0,scrollbars=0,resizable=0,width=500,height=260,top=' + popupPosition.top + ',left=' + popupPosition.left).focus();
-			break;
-			
-			// ViewSource
-			case "ViewSource": 
-				this.viewSource(n);
-			break;
-			
-			// ViewText
-			case "ViewText": 
-				this.viewText(n);
-			break;
-			
-			// Help
-			case "Help":
-				window.open(this.config[n].PopupsDir + 'about.html?wysiwyg=' + n, 'popup', 'location=0,status=0,scrollbars=0,resizable=0,width=400,height=350,top=' + popupPosition.top + ',left=' + popupPosition.left).focus();
-			break;
-			
-			// Strip any HTML added by word
-			case "RemoveFormat":
-				this.removeFormat(n);	
-			break;
-			
-			// Preview thx to Korvo
-			case "Preview":
-				window.open(this.config[n].PopupsDir + 'preview.html?wysiwyg=' + n,'popup', 'location=0,status=0,scrollbars=1,resizable=1,width=' + this.config[n].PreviewWidth + ',height=' + this.config[n].PreviewHeight + ',top=' + popupPosition.top + ',left=' + popupPosition.left).focus();
-			break;
-			
-			// Print
-			case "Print":
-				this.print(n);
-			break;
-			
-			// Save
-			case "Save":
-			    WYSIWYG.updateTextArea(n);
-			    var form = WYSIWYG_Core.findParentNode("FORM", this.getEditor(n));
-			    if(form == null) {
-			    	alert("Can not submit the content, because no form element found.");
-			    	return;
-			    }
-			    form.submit();
-			break;
+	  switch (cmd)
+	  {
+	    case "Maximize":
+	      this.maximize(n);
+	      break;
+	    case "FormatBlock":
+	      WYSIWYG_Core.execCommand(n, cmd, "<" + value + ">");
+	      break;
+	    // ForeColor and 
+	    case "ForeColor":
+	      var rgb = this.getEditorWindow(n).document.queryCommandValue(cmd);
+	      var currentColor = rgb != '' ? toHexColor(this.getEditorWindow(n).document.queryCommandValue(cmd)) : "000000";
+	      window.open(
+	        this.config[n].PopupsDir + 'select_color.html?color=' + currentColor + '&command=' + cmd + '&wysiwyg=' + n,
+	        'popup',
+	        'location=0,status=0,scrollbars=0,width=210,height=165,top=' +
+	        popupPosition.top +
+	        ',left=' +
+	        popupPosition.left).focus();
+	      break;
+
+	    // BackColor
+	    case "BackColor":
+	      var currentColor = toHexColor(this.getEditorWindow(n).document.queryCommandValue(cmd));
+	      window.open(
+	        this.config[n].PopupsDir + 'select_color.html?color=' + currentColor + '&command=' + cmd + '&wysiwyg=' + n,
+	        'popup',
+	        'location=0,status=0,scrollbars=0,width=210,height=165,top=' +
+	        popupPosition.top +
+	        ',left=' +
+	        popupPosition.left).focus();
+	      break;
+
+	    // InsertImage
+	    case "InsertImage":
+	      window.open(imagePopupFile + '?wysiwyg=' + n,
+	        'popup',
+	        'location=0,status=0,scrollbars=0,resizable=0,width=' +
+	        imagePopupWidth +
+	        ',height=' +
+	        imagePopupHeight +
+	        ',top=' +
+	        popupPosition.top +
+	        ',left=' +
+	        popupPosition.left).focus();
+	      break;
+
+	    // Remove Image
+	    case "RemoveImage":
+	      this.removeImage(n);
+	      break;
+
+	    // Remove Link
+	    case "RemoveLink":
+	      this.removeLink(n);
+	      break;
+
+	    // Remove a Node
+	    case "RemoveNode":
+	      this.removeNode(n);
+	      break;
+
+	    // Create Link
+	    case "CreateLink":
+	      window.open(this.config[n].PopupsDir + 'insert_hyperlink.html?wysiwyg=' + n,
+	        'popup',
+	        'location=0,status=0,scrollbars=0,resizable=0,width=350,height=160,top=' +
+	        popupPosition.top +
+	        ',left=' +
+	        popupPosition.left).focus();
+	      break;
+
+	    // InsertTable
+	    case "InsertTable":
+	      window.open(this.config[n].PopupsDir + 'create_table.html?wysiwyg=' + n,
+	        'popup',
+	        'location=0,status=0,scrollbars=0,resizable=0,width=500,height=260,top=' +
+	        popupPosition.top +
+	        ',left=' +
+	        popupPosition.left).focus();
+	      break;
+
+	    // ViewSource
+	    case "ViewSource":
+	      this.viewSource(n);
+	      break;
+
+	    // ViewText
+	    case "ViewText":
+	      this.viewText(n);
+	      break;
+
+	    // Help
+	    case "Help":
+	      window.open(this.config[n].PopupsDir + 'about.html?wysiwyg=' + n,
+	        'popup',
+	        'location=0,status=0,scrollbars=0,resizable=0,width=400,height=350,top=' +
+	        popupPosition.top +
+	        ',left=' +
+	        popupPosition.left).focus();
+	      break;
+
+	    // Strip any HTML added by word
+	    case "RemoveFormat":
+	      this.removeFormat(n);
+	      break;
+
+	    // Preview thx to Korvo
+	    case "Preview":
+	      window.open(this.config[n].PopupsDir + 'preview.html?wysiwyg=' + n,
+	        'popup',
+	        'location=0,status=0,scrollbars=1,resizable=1,width=' +
+	        this.config[n].PreviewWidth +
+	        ',height=' +
+	        this.config[n].PreviewHeight +
+	        ',top=' +
+	        popupPosition.top +
+	        ',left=' +
+	        popupPosition.left).focus();
+	      break;
+
+	    // Print
+	    case "Print":
+	      this.print(n);
+	      break;
+
+	    // Save
+	    case "Save":
+	      WYSIWYG.updateTextArea(n);
+	      //var form = WYSIWYG_Core.findParentNode("FORM", this.getEditor(n));
+	      //if(form == null) {
+	      //	alert("Can not submit the content, because no form element found.");
+	      //	return;
+	      //}
+	      //form.submit();
+	      window.postMessage({ "cmd": "Save", "value": $(n).value }, "*");
+	  }
+	  break;
 			         
 			// Return
 			case "Return":
