@@ -31,13 +31,13 @@ var WYSIWYG = {
 	Settings: function() {
 	
 		// Images Directory
-		this.ImagesDir = "../images/";
+    this.ImagesDir = "https://STGroves.github.io/STGroves.github.io/images/";
 		
 		// Popups Directory
-		this.PopupsDir = "../popups/";
+    this.PopupsDir = "https://STGroves.github.io/STGroves.github.io/popups/";
 		
 		// CSS Directory File
-		this.CSSFile = "../styles/wysiwyg.css";		
+    this.CSSFile = "https://STGroves.github.io/STGroves.github.io/styles/wysiwyg.css";		
 		
 		// Default WYSIWYG width and height (use px or %)
 		this.Width = "500px";
