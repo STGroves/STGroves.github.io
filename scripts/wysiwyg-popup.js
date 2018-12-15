@@ -40,6 +40,8 @@ window.addEventListener("message", function (event) {
   WYSIWYG_Core = event.data[1][1];
   WYSIWYG_Table = event.data[1][2];
 
+  console.log(event.data[2]);
+
   if (event.data[2] !== null)
     event.data[2]();
 })
