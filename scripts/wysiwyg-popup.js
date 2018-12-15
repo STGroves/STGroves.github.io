@@ -33,17 +33,17 @@ var WYSIWYG_Popup = {
 if (!window.opener) window.close();
 
 window.addEventListener("message", function (event) {
-  if (event.data.length !== 3 || event.data[0]["CMD"] !== "PopulatePopup")
+  if (event.data.length !== 3 || event.data["CMD"] !== "PopulatePopup")
     return;
 
   WYSIWYG = event.data[1][0];
   WYSIWYG_Core = event.data[1][1];
   WYSIWYG_Table = event.data[1][2];
 
-  console.log(event.data[2]);
+  console.log(event.data["Callback"]);
 
-  if (event.data[2] !== null)
-    event.data[2]();
+  if (event.data["Callback"] !== null)
+    event.data["Callback"]();
 })
 
 var WYSIWYG = null;

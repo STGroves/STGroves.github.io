@@ -2762,11 +2762,11 @@ var WYSIWYG_Table = {
 
 addEventListener("message", function(event)
 {
-  if (event.data.length !== 2)
+  if (event.data.length !== 3)
     return;
 
-  if (event.data[0]["CMD"] === "PopulatePopup")
-    event.source.postMessage({ "CMD": "PopulatePopup", "1":[WYSIWYG, WYSIWYG_Core, WYSIWYG_Table]});
+  if (event.data["CMD"] === "PopulatePopup")
+    event.source.postMessage({ "CMD": "PopulatePopup", "1": [WYSIWYG, WYSIWYG_Core, WYSIWYG_Table], "Callback": event.data["Callback"]});
 });
 
 
