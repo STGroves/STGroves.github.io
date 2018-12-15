@@ -41,7 +41,11 @@ window.addEventListener("message", function (event) {
   WYSIWYG_Table = event.data[1][2];
 
   if (func !== null)
+  {
+    console.log("Launching Callback!");
     func();
+    console.log("Callback Launched!");
+  }
 })
 
 var WYSIWYG = null;
