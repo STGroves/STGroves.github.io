@@ -25,90 +25,92 @@
 	<script type="text/javascript" src="../scripts/wysiwyg-popup.js"></script>
 	<script type="text/javascript" src="../scripts/wysiwyg-color.js"></script>
 		
-	<script type="text/javascript">
-	var n = WYSIWYG_Popup.getParam('wysiwyg');
+<script type="text/javascript">
+  Setup(() => {
+  var n = WYSIWYG_Popup.getParam('wysiwyg');
 		
-	// add stylesheet file
-	if(n) document.write('<link rel="stylesheet" type="text/css" href="../' + WYSIWYG.config[n].CSSFile +'">\n');
+  // add stylesheet file
+  if (n) document.write('<link rel="stylesheet" type="text/css" href="../' + WYSIWYG.config[n].CSSFile + '">\n');
+  });
 	
-	/* ---------------------------------------------------------------------- *\
-	  Function    : buildTable()
-	  Description : Builds a table and inserts it into the WYSIWYG.
-	\* ---------------------------------------------------------------------- */
-	function buildTable() {
+  /* ---------------------------------------------------------------------- *\
+    Function    : buildTable()
+    Description : Builds a table and inserts it into the WYSIWYG.
+  \* ---------------------------------------------------------------------- */
+  function buildTable() {
 	  		
-		var WYSIWYG_Table = window.opener.WYSIWYG_Table;
-		var doc = WYSIWYG.getEditorWindow(n).document;
-		// create a table object
-		var table = doc.createElement("TABLE");
-		// set cols and rows
-		WYSIWYG_Core.setAttribute(table, "tmpcols", document.getElementById("cols").value);
-		WYSIWYG_Core.setAttribute(table, "tmprows", document.getElementById("rows").value);
-		// alignment
-		if(document.getElementById("alignment").value != "") 
-			WYSIWYG_Core.setAttribute(table, "align", document.getElementById("alignment").value);
+    var WYSIWYG_Table = window.opener.WYSIWYG_Table;
+    var doc = WYSIWYG.getEditorWindow(n).document;
+    // create a table object
+    var table = doc.createElement("TABLE");
+    // set cols and rows
+    WYSIWYG_Core.setAttribute(table, "tmpcols", document.getElementById("cols").value);
+    WYSIWYG_Core.setAttribute(table, "tmprows", document.getElementById("rows").value);
+    // alignment
+    if(document.getElementById("alignment").value != "") 
+      WYSIWYG_Core.setAttribute(table, "align", document.getElementById("alignment").value);
 		
-		// style attributes
-		var style = "";
-		// padding
-		style += "padding:" + document.getElementById("padding").value + "px;";
-		// width
-		style += "width:" + document.getElementById("width").value + document.getElementById("widthType").value + ";";
-		// border
-		style += "border:" + document.getElementById("border").value + "px;";
-		// borderstyle
-		if(document.getElementById("borderstyle").value != "none")
-			style += "border-style:" + document.getElementById("borderstyle").value + ";";
-		// border-color
-		if(document.getElementById("bordercolor").value != "none")
-			style += "border-color:" + document.getElementById("bordercolor").value + ";";
-		// border-collapse
-		var collapse = document.getElementById("bordercollapse").checked ? "true" : "separate";
-		style += "border-collapse:" + collapse + ";";
-		// background-color
-		if(document.getElementById("backgroundcolor").value != "none")
-			style += "background-color:" + document.getElementById("backgroundcolor").value + ";";
+    // style attributes
+    var style = "";
+    // padding
+    style += "padding:" + document.getElementById("padding").value + "px;";
+    // width
+    style += "width:" + document.getElementById("width").value + document.getElementById("widthType").value + ";";
+    // border
+    style += "border:" + document.getElementById("border").value + "px;";
+    // borderstyle
+    if(document.getElementById("borderstyle").value != "none")
+      style += "border-style:" + document.getElementById("borderstyle").value + ";";
+    // border-color
+    if(document.getElementById("bordercolor").value != "none")
+      style += "border-color:" + document.getElementById("bordercolor").value + ";";
+    // border-collapse
+    var collapse = document.getElementById("bordercollapse").checked ? "true" : "separate";
+    style += "border-collapse:" + collapse + ";";
+    // background-color
+    if(document.getElementById("backgroundcolor").value != "none")
+      style += "background-color:" + document.getElementById("backgroundcolor").value + ";";
 		
-		WYSIWYG_Core.setAttribute(table, "style", style);
-		
-		
-		WYSIWYG_Table.create(n, table);
-		window.close();
-		return;
-		
-		// Checks if the table border will use the BORDER-COLLAPSE CSS attribute
-		var collapse;
-		if (document.getElementById('borderCollapse').checked == true) {
-			collapse = document.getElementById('borderCollapse').value;
-		}
-		else {
-			collapse = "separate";
-		}
-		
-		// Builds a table based on the data input into the form
-		var table = '<table border="0" cellpadding="0" cellspacing="0" style="';
-		table += 'BORDER-COLLAPSE: ' + collapse + ';';  
-		table += ' border: ' + document.getElementById('borderWidth').value + ' ' +  document.getElementById('borderStyle').value + ' ' +  document.getElementById('borderColor').value + ';';	
-		table += ' width: ' + document.getElementById('tableWidth').value + document.getElementById('widthType').value + ';';
-		table += ' background-color: ' + document.getElementById('shadingColor').value + ';"';
-		table += ' alignment="' + document.getElementById('alignment').value + '">\n';	
-		
-		// Creates the number of rows and cols the table will have
-		for (var i = 0; i < document.getElementById('rows').value; i++) {
-			table += '<tr>\n';
-			for (var j = 0; j < document.getElementById('cols').value; j++) {
-				table += '<td style="border: ' + document.getElementById('borderWidth').value + ' ' +  document.getElementById('borderStyle').value + ' ' +  document.getElementById('borderColor').value + '; padding: ' + document.getElementById('padding').value + ';">&nbsp;</td>\n';
-			}
-			table += '</tr>\n';
-		}
-		table += '</table>\n';
+    WYSIWYG_Core.setAttribute(table, "style", style);
 		
 		
-		// Inserts the table code into the WYSIWYG editor	
-		WYSIWYG.insertHTML(table, n);
-		window.close();
-	}	
-	</script>
+    WYSIWYG_Table.create(n, table);
+    window.close();
+    return;
+		
+    // Checks if the table border will use the BORDER-COLLAPSE CSS attribute
+    var collapse;
+    if (document.getElementById('borderCollapse').checked == true) {
+      collapse = document.getElementById('borderCollapse').value;
+    }
+    else {
+      collapse = "separate";
+    }
+		
+    // Builds a table based on the data input into the form
+    var table = '<table border="0" cellpadding="0" cellspacing="0" style="';
+    table += 'BORDER-COLLAPSE: ' + collapse + ';';  
+    table += ' border: ' + document.getElementById('borderWidth').value + ' ' +  document.getElementById('borderStyle').value + ' ' +  document.getElementById('borderColor').value + ';';	
+    table += ' width: ' + document.getElementById('tableWidth').value + document.getElementById('widthType').value + ';';
+    table += ' background-color: ' + document.getElementById('shadingColor').value + ';"';
+    table += ' alignment="' + document.getElementById('alignment').value + '">\n';	
+		
+    // Creates the number of rows and cols the table will have
+    for (var i = 0; i < document.getElementById('rows').value; i++) {
+      table += '<tr>\n';
+      for (var j = 0; j < document.getElementById('cols').value; j++) {
+        table += '<td style="border: ' + document.getElementById('borderWidth').value + ' ' +  document.getElementById('borderStyle').value + ' ' +  document.getElementById('borderColor').value + '; padding: ' + document.getElementById('padding').value + ';">&nbsp;</td>\n';
+      }
+      table += '</tr>\n';
+    }
+    table += '</table>\n';
+		
+		
+    // Inserts the table code into the WYSIWYG editor	
+    WYSIWYG.insertHTML(table, n);
+    window.close();
+  }
+</script>
 
 	<body bgcolor="#EEEEEE" marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" onload="WYSIWYG_ColorInst.init();">
 
