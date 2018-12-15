@@ -33,25 +33,26 @@ var WYSIWYG_Popup = {
 if (!window.opener) window.close();
 
 window.addEventListener("message", function (event) {
-  if (event.data.length !== 3 || event.data["CMD"] !== "PopulatePopup")
+  if (event.data.length !== 2 || event.data["CMD"] !== "PopulatePopup")
     return;
 
   WYSIWYG = event.data[1][0];
   WYSIWYG_Core = event.data[1][1];
   WYSIWYG_Table = event.data[1][2];
 
-  console.log(event.data["Callback"]);
-
-  if (event.data["Callback"] !== null)
-    event.data["Callback"]();
+  if (func !== null)
+    func();
 })
 
 var WYSIWYG = null;
 var WYSIWYG_Core = null;
 var WYSIWYG_Table = null;
+var callback;
 
 function Setup(func)
 {
+  callback = func;
+
 // bind objects on local vars
-  window.opener.postMessage({ "CMD": "PopulatePopup", "Callback": func }, "*")
+  window.opener.postMessage({ "CMD": "PopulatePopup"}, "*")
 }
